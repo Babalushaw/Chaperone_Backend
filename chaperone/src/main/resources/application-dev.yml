@@ -1,0 +1,21 @@
+# changing server port
+server:
+  port: 9090
+  # data base configuration:MySql
+spring:
+  datasource:
+  url: jdbc:mysql://localhost:3306/chaperone
+  username: root
+  password: Babalu@21
+  driver-class-name: com.mysql.cj.jdbc.Driver
+
+#Hibernate configuration
+  #To create table Automatically
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+    #To see what ever you fire query
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect.storage_engine: innodb
