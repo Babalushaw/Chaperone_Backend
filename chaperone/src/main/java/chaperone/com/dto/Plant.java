@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -14,6 +16,7 @@ import lombok.Setter;
 @Table(name = "product")
 public class Plant {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long plantId;
     private String name;
     private double rating;
@@ -23,9 +26,13 @@ public class Plant {
     private String colour;
     private String size;
     @OneToOne
+    @JoinColumn(name = "pot_id")
     private Pot pot;
+    @OneToMany
+    private List<Category> categoryList;
     @OneToOne
-    private Category category;
-    @OneToOne
+    @JoinColumn(name = "nursery_id")
     private Nursery nursery;
+    @OneToMany
+    private List<ProductImage> productImageList;
 }

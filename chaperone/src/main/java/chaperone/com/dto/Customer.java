@@ -1,9 +1,6 @@
 package chaperone.com.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,19 +15,21 @@ import java.util.List;
 @Entity
 public class Customer {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String mobileNumber;
     private String email;
     @OneToOne
+    @JoinColumn(name = "address_id")
     private Address address;
-    @OneToOne
+    @OneToOne()
     private Cart cart;
     @OneToMany
     private List<Booking> bookingList;
     @OneToMany
     private List<OrderStatus> orderStatusList;
-    @OneToMany
+    @OneToMany()
     private List<Payment> paymentList;
 
 

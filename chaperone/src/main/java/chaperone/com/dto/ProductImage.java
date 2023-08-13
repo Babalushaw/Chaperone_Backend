@@ -1,5 +1,6 @@
 package chaperone.com.dto;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,14 +12,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Employee {
+public class ProductImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long employeeId;
-    private String name;
-    private String email;
-    private String phone;
-    private String role;
-    @OneToOne
-    private Address address;
+    private long productImageId;
+    private String key;
+    @ManyToOne
+    @JoinColumn(name = "plant_id")
+    private Plant plant;
 }

@@ -1,8 +1,6 @@
 package chaperone.com.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +13,7 @@ import lombok.Setter;
 @Entity
 public class Nursery {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long nurserId;
     private String contactPerson;
     private String mobileNumber;

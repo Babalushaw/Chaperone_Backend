@@ -1,8 +1,6 @@
 package chaperone.com.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,12 +13,13 @@ import lombok.Setter;
 @Entity
 public class Mali {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long maliId;
     private String maliName;
     private String contactNumber;
     private String whatsappNumber;
     private String emailId;
-    @OneToOne
+    @OneToOne()
     private Address address;
 
 }

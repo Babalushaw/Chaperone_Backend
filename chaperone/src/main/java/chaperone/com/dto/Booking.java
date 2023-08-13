@@ -14,15 +14,19 @@ import lombok.Setter;
 @Table(name = "product_booking")
 public class Booking {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long bookingId;
     private String date;
     private int numberOfQuantity;
     private float totalPrice;
     @OneToOne
+    @JoinColumn(name = "plant_id")
     private Plant plant;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
     @OneToOne()
+    @JoinColumn(name = "address_id")
     private Address address;
 
 }

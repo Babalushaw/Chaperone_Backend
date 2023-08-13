@@ -1,9 +1,6 @@
 package chaperone.com.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,8 +14,10 @@ import java.util.List;
 @Entity
 public class Cart {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long cartId;
-    @OneToOne
+    @OneToOne(mappedBy = "cart")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
     @OneToMany
     List<Plant> plantList;

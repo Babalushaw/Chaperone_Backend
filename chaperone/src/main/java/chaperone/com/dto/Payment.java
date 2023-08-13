@@ -1,9 +1,6 @@
 package chaperone.com.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,12 +13,15 @@ import lombok.Setter;
 @Entity
 public class Payment {
     @Id
-    private String paymentId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String userPaymentId;
     private String DateTime;
     private String paymentMode;
     private float amount;
-    @OneToOne
+    @OneToOne()
+    @JoinColumn(name = "booking_id")
     private Booking booking;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 }
