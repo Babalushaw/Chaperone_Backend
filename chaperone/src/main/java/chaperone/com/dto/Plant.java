@@ -26,7 +26,6 @@ public class Plant {
     private String colour;
     private String size;
     @OneToOne
-    @JoinColumn(name = "pot_id")
     private Pot pot;
     @OneToMany
     private List<Category> categoryList;

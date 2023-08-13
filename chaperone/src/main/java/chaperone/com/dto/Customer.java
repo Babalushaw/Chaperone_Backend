@@ -20,16 +20,16 @@ public class Customer {
     private String name;
     private String mobileNumber;
     private String email;
-    @OneToOne
+    @OneToOne()
     @JoinColumn(name = "address_id")
     private Address address;
-    @OneToOne()
+    @OneToOne(mappedBy = "customer")
     private Cart cart;
-    @OneToMany
+    @OneToMany(mappedBy = "customer")
     private List<Booking> bookingList;
-    @OneToMany
+    @OneToMany(mappedBy = "customer")
     private List<OrderStatus> orderStatusList;
-    @OneToMany()
+    @OneToMany(mappedBy = "customer")
     private List<Payment> paymentList;
 
 

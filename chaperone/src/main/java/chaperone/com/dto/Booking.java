@@ -28,5 +28,7 @@ public class Booking {
     @OneToOne()
     @JoinColumn(name = "address_id")
     private Address address;
+    @OneToOne(mappedBy = "booking")
+    private Payment payment;
 
 }

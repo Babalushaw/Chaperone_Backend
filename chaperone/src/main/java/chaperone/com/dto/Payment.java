@@ -14,7 +14,7 @@ import lombok.Setter;
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String userPaymentId;
+    private long paymentId;
     private String DateTime;
     private String paymentMode;
     private float amount;
