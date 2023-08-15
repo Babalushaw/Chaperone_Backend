@@ -1,27 +1,28 @@
-package chaperone.com.dto;
+package chaperone.com.model;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
-public class Payment {
+public class OrderStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long paymentId;
-    private String DateTime;
-    private String paymentMode;
-    private float amount;
-    @OneToOne()
+    private long orderStatusId;
+    private String bookingDateTime;
+    private String deliveryDateTime;
+    @OneToOne
     @JoinColumn(name = "booking_id")
     private Booking booking;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
+
 }
