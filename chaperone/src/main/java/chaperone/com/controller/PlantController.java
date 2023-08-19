@@ -1,5 +1,6 @@
 package chaperone.com.controller;
 
+import chaperone.com.dto.PlantDto;
 import chaperone.com.model.Plant;
 import chaperone.com.service.PlantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,15 @@ public class PlantController {
     @Autowired
     private PlantService plantService;
     @PostMapping("/add_plant")
-    public ResponseEntity<Plant> addPlant(@RequestBody Plant plant){
-        return ResponseEntity.status(HttpStatus.CREATED).body(plantService.addPlant(plant));
+    public ResponseEntity<Plant> addPlant(@RequestBody PlantDto plantDto){
+        return ResponseEntity.status(HttpStatus.CREATED).body(plantService.addPlant(plantDto));
     }
     @DeleteMapping("/delete_plant/{plantId}")
-    public ResponseEntity<String> deletePlant(@RequestParam long plantId){
+    public ResponseEntity<String> deletePlant(@PathVariable long plantId){
         return ResponseEntity.status(HttpStatus.OK).body(plantService.deletePlant(plantId));
     }
     @GetMapping("/{plant_name}")
-    public ResponseEntity<List<Plant>> getPlant(@RequestParam String plantName){
+    public ResponseEntity<List<Plant>> getPlant(@PathVariable String plantName){
         return ResponseEntity.status(HttpStatus.OK).body(plantService.getPlant(plantName));
     }
     @GetMapping("/plant_list")

@@ -14,16 +14,20 @@ import java.util.List;
 public class PotController {
     @Autowired
     private PotService potService;
+    @GetMapping("/hello")
+    public String show(){
+        return "hello jujala";
+    }
     @PostMapping("/add_pot")
     public ResponseEntity<Pot> addPot(@RequestBody Pot pot){
         return ResponseEntity.status(HttpStatus.CREATED).body(potService.addPot(pot));
     }
     @DeleteMapping("/delete_pot/{potId}")
-    public ResponseEntity<String> deletePot(@RequestParam long potId){
+    public ResponseEntity<String> deletePot(@PathVariable long potId){
         return ResponseEntity.status(HttpStatus.CREATED).body(potService.deletePot(potId));
     }
     @GetMapping("/{pot_name}")
-    public ResponseEntity<List<Pot>> getPot(@RequestParam String  potName){
+    public ResponseEntity<List<Pot>> getPot(@PathVariable String  potName){
         return ResponseEntity.status(HttpStatus.OK).body(potService.getPot(potName));
     }
     @GetMapping("/pot_list")

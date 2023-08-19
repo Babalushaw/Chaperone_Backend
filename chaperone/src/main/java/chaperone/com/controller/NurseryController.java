@@ -1,5 +1,6 @@
 package chaperone.com.controller;
 
+import chaperone.com.dto.NurseryDto;
 import chaperone.com.model.Nursery;
 import chaperone.com.service.NurseryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,15 @@ public class NurseryController {
     @Autowired
     private NurseryService nurseryService;
     @PostMapping("/add_nursery")
-    public ResponseEntity<Nursery> addNursery(@RequestBody Nursery nursery){
-        return ResponseEntity.status(HttpStatus.CREATED).body(nurseryService.addNursery(nursery));
+    public ResponseEntity<Nursery> addNursery(@RequestBody NurseryDto nurseryDto){
+        return ResponseEntity.status(HttpStatus.CREATED).body(nurseryService.addNursery(nurseryDto));
     }
     @DeleteMapping("/{nurserId}")
-    public ResponseEntity<String> deleteNurser(@RequestParam long nurseryId){
+    public ResponseEntity<String> deleteNurser(@PathVariable long nurseryId){
         return ResponseEntity.status(HttpStatus.OK).body(nurseryService.deleteNursery(nurseryId));
     }
     @GetMapping("/{nurseryName}")
-    public ResponseEntity<List<Nursery>> getNursery(@RequestParam String nurseryName){
+    public ResponseEntity<List<Nursery>> getNursery(@PathVariable String nurseryName){
         return ResponseEntity.status(HttpStatus.OK).body(nurseryService.getNursery(nurseryName));
     }
     @GetMapping("/nursery_list")

@@ -1,5 +1,6 @@
 package chaperone.com.serviceImpl;
 
+import chaperone.com.dto.NurseryDto;
 import chaperone.com.model.Nursery;
 import chaperone.com.service.NurseryService;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ import java.util.List;
 @Service
 public class NurseryServiceImpl implements NurseryService {
     @Override
-    public Nursery addNursery(Nursery nursery) {
+    public Nursery addNursery(NurseryDto nurseryDto) {
         return null;
     }
 

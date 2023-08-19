@@ -4,15 +4,19 @@ import chaperone.com.dto.AddressDto;
 import chaperone.com.model.Address;
 import chaperone.com.model.Customer;
 import chaperone.com.dto.CustomerDto;
+import chaperone.com.model.Payment;
+import chaperone.com.model.Plant;
 import chaperone.com.repository.AddressRepository;
 import chaperone.com.repository.CustomerRepository;
 import chaperone.com.service.CustomerService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
+@Slf4j
 public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
@@ -22,6 +26,7 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer addCustomer(CustomerDto customerDto) {
         try{
             Customer customer=getCustomerModel(customerDto);
+            log.info(customerDto.getName()+ " added");
             addressRepository.save(customer.getAddress());
             return customerRepository.save(customer);
         }catch(Exception e){
@@ -31,7 +36,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer getCustomer(long customerId) {
+    public Customer getCustomer(String phone) {
         return null;
     }
 
@@ -46,7 +51,22 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public String updateCustomer(Customer customer) {
+    public Customer updateCustomer(long customerId, CustomerDto customerDto) {
+        return null;
+    }
+
+    @Override
+    public Plant getCartDetails(long customerId) {
+        return null;
+    }
+
+    @Override
+    public Plant deleteCartItem(long customerId, long plantId) {
+        return null;
+    }
+
+    @Override
+    public List<Payment> getPaymentDetails(long customerId) {
         return null;
     }
 

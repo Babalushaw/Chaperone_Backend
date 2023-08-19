@@ -26,9 +26,6 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-    @OneToOne()
-    @JoinColumn(name = "address_id")
-    private Address address;
     @OneToOne(mappedBy = "booking")
     private Payment payment;
 

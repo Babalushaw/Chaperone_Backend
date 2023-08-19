@@ -6,13 +6,10 @@ import chaperone.com.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/chaperone/user")
+@RequestMapping("/chaperone/customer")
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
@@ -20,4 +17,13 @@ public class CustomerController {
     public ResponseEntity<Customer> addCustomer(@RequestBody CustomerDto customerDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(customerService.addCustomer(customerDto));
     }
+    @PutMapping("/update_customer/{customerId}")
+    public ResponseEntity<Customer> updateCustomer(@PathVariable long customerId,@RequestBody CustomerDto customerDto){
+        return ResponseEntity.status(HttpStatus.CREATED).body(customerService.updateCustomer(customerId,customerDto));
+    }
+    @GetMapping("/{phone}")
+    public ResponseEntity<Customer> getCustomer(@PathVariable String phone){
+        return ResponseEntity.status(HttpStatus.OK).body(customerService.getCustomer(phone));
+    }
+
 }
