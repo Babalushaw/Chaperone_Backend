@@ -22,4 +22,5 @@ public interface CustomerService {
     Plant deleteCartItem(long customerId, long plantId);
 
     List<Payment> getPaymentDetails(long customerId);
+    Customer findByEmail(String email);
 }

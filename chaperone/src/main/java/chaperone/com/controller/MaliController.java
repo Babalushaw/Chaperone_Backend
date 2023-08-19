@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/chaperone/mali")
+@RequestMapping("/chaperone/admin/mali")
 public class MaliController {
     @Autowired
     private MaliService maliService;

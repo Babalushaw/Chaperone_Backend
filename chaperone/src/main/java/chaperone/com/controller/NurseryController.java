@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/chaperone/nursery")
+@RequestMapping("/chaperone/admin/nursery")
 public class NurseryController {
     @Autowired
     private NurseryService nurseryService;

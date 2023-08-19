@@ -67,6 +67,11 @@ public class CustomerServiceImpl implements CustomerService {
         return null;
     }
 
+    @Override
+    public Customer findByEmail(String email) {
+        return customerRepository.findAll().stream().filter(customer -> customer.getEmail().compareTo(email)==0).findAny().orElse(null);
+    }
+
     private Customer getCustomerModel(CustomerDto customerDto) {
         try{
             Customer customer=new Customer();

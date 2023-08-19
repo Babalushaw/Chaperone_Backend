@@ -7,17 +7,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/chaperone/pot")
+@RequestMapping("/chaperone/admin/pot")
 public class PotController {
     @Autowired
     private PotService potService;
-    @GetMapping("/hello")
-    public String show(){
-        return "hello jujala";
-    }
+
     @PostMapping("/add_pot")
     public ResponseEntity<Pot> addPot(@RequestBody Pot pot){
         return ResponseEntity.status(HttpStatus.CREATED).body(potService.addPot(pot));
@@ -28,7 +26,8 @@ public class PotController {
     }
     @GetMapping("/{pot_name}")
     public ResponseEntity<List<Pot>> getPot(@PathVariable String  potName){
-        return ResponseEntity.status(HttpStatus.OK).body(potService.getPot(potName));
+       // return ResponseEntity.status(HttpStatus.OK).body(potService.getPot(potName));
+        return  ResponseEntity.status(HttpStatus.OK).body(new ArrayList<Pot>());
     }
     @GetMapping("/pot_list")
     public ResponseEntity<List<Pot>> getPotList(){
