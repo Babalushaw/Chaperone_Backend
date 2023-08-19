@@ -1,5 +1,6 @@
 package chaperone.com.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,13 +21,19 @@ public class Booking {
     private String date;
     private int numberOfQuantity;
     private float totalPrice;
-    @OneToOne
-    @JoinColumn(name = "plant_id")
+
+    @ManyToOne()
+    @JoinColumn(name = "plant_id", insertable = false, updatable = false)
+    @JsonIgnore
     private Plant plant;
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
+
+    @ManyToOne()
+    @JoinColumn(name = "customer_id", insertable = false, updatable = false)
+    @JsonIgnore
     private Customer customer;
-    @OneToOne(mappedBy = "booking")
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "booking",cascade = CascadeType.ALL)
     private Payment payment;
 
 }

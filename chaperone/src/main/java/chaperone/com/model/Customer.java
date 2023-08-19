@@ -1,12 +1,16 @@
 package chaperone.com.model;
 
 
+import chaperone.com.model.address.CustomerAddress;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -20,18 +24,36 @@ public class Customer {
     private long id;
     private String name;
     private String mobileNumber;
+    private String password;
     private String email;
-    @OneToOne()
-    @JoinColumn(name = "address_id")
-    private Address address;
-    @OneToOne(mappedBy = "customer")
+
+    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
+    private CustomerAddress address;
+
+    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
     private Cart cart;
-    @OneToMany(mappedBy = "customer")
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<Booking> bookingList;
-    @OneToMany(mappedBy = "customer")
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<OrderStatus> orderStatusList;
-    @OneToMany(mappedBy = "customer")
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<Payment> paymentList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    private List<Rating> ratingList=new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Review> reviewList=new ArrayList<>();
+
+    private LocalDateTime createdAt;
 
 
 }

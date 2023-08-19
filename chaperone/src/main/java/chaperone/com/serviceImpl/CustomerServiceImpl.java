@@ -1,12 +1,10 @@
 package chaperone.com.serviceImpl;
 
 import chaperone.com.dto.AddressDto;
-import chaperone.com.model.Address;
 import chaperone.com.model.Customer;
 import chaperone.com.dto.CustomerDto;
 import chaperone.com.model.Payment;
 import chaperone.com.model.Plant;
-import chaperone.com.repository.AddressRepository;
 import chaperone.com.repository.CustomerRepository;
 import chaperone.com.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,14 +18,13 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
-    @Autowired
-    private AddressRepository addressRepository;
+
     @Override
     public Customer addCustomer(CustomerDto customerDto) {
         try{
             Customer customer=getCustomerModel(customerDto);
             log.info(customerDto.getName()+ " added");
-            addressRepository.save(customer.getAddress());
+
             return customerRepository.save(customer);
         }catch(Exception e){
             return null;
@@ -73,18 +70,14 @@ public class CustomerServiceImpl implements CustomerService {
     private Customer getCustomerModel(CustomerDto customerDto) {
         try{
             Customer customer=new Customer();
-            Address address=new Address();
+
             AddressDto addressDto=customerDto.getAddressDto();
 
             customer.setName(customerDto.getName());
             customer.setEmail(customerDto.getEmail());
             customer.setMobileNumber(customerDto.getMobileNumber());
 
-            address.setLocality(addressDto.getLocality());
-            address.setCity(addressDto.getCity());
-            address.setPinCode(addressDto.getPinCode());
-            address.setState(addressDto.getState());
-            customer.setAddress(address);
+
             return customer;
         }catch(Exception e){
             return null;

@@ -1,5 +1,6 @@
 package chaperone.com.model;
 
+import chaperone.com.model.address.NurseryAddress;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,5 @@ public class Nursery {
     private String mobileNumber;
     private String email;
     @OneToOne
-    private Address address;
+    private NurseryAddress address;
 }

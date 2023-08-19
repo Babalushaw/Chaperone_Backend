@@ -28,8 +28,7 @@ public class PlantServiceImpl implements PlantService {
         try{
             Plant plant=plantDtoPlant(plantDto);
             plant.setCategoryList(plantDto.getCategoryList());
-            plant.setNursery(nurseryRepository.getReferenceById(plantDto.getNurseryId()));
-            plant.setPot(potRepository.getReferenceById(plantDto.getPotId()));
+
             return plantRepository.save(plant);
         }catch (Exception e){
             return null;
@@ -54,11 +53,7 @@ public class PlantServiceImpl implements PlantService {
         try{
             Plant plant=new Plant();
             plant.setName(plantDto.getName());
-            plant.setColour(plantDto.getColour());
-            plant.setMarkPrice(plantDto.getMarkPrice());
-            float price= plantDto.getMarkPrice()+(plantDto.getMarkPrice() * plantDto.getPercentageIncrease())/100;
-            plant.setSellingPrice(price);
-            plant.setSize(plantDto.getSize());
+
             plant.setCategoryList(plantDto.getCategoryList());
 
             return plant;

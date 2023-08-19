@@ -1,5 +1,6 @@
 package chaperone.com.model;
 
+import chaperone.com.model.address.EmployeeAddress;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,5 +22,5 @@ public class Employee {
     private String phone;
     private String role;
     @OneToOne
-    private Address address;
+    private EmployeeAddress address;
 }

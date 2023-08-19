@@ -1,6 +1,7 @@
 package chaperone.com.model;
 
 
+import chaperone.com.model.address.MaliAddress;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,6 @@ public class Mali {
     private String whatsappNumber;
     private String emailId;
     @OneToOne()
-    private Address address;
+    private MaliAddress address;
 
 }

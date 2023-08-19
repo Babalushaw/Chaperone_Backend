@@ -1,9 +1,11 @@
 package chaperone.com.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,19 +15,22 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-public class OrderStatus {
+public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long orderStatusId;
-    private LocalDateTime bookingDateTime;
-    private LocalDateTime deliveryDateTime;
-
-    @OneToOne
-    @JoinColumn(name = "booking_id")
-    private Booking booking;
+    private long id;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "user_id",nullable = false)
     private Customer customer;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "product_id",nullable = false)
+    private Plant plant;
+
+    private double rating;
+    private String description;
+    private LocalDateTime createdAt;
 
 }
