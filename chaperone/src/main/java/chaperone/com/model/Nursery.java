@@ -20,6 +20,10 @@ public class Nursery {
     private String contactPerson;
     private String mobileNumber;
     private String email;
-    @OneToOne
+    @OneToOne(mappedBy = "nursery",cascade = CascadeType.ALL,orphanRemoval = true)
     private NurseryAddress address;
+
+    @ManyToOne
+    @JoinColumn(name = "plant_id")
+    private Plant plant;
 }

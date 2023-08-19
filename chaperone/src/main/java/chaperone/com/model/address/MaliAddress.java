@@ -22,8 +22,8 @@ public class MaliAddress {
     private int pinCode;
     private String state;
 
-    @OneToOne(mappedBy = "MaliAddress")
-    @Column(name = "mali_id")
+    @OneToOne()
+    @JoinColumn(name = "mali_id")
     private Mali mali;
 
 }

@@ -22,8 +22,8 @@ public class EmployeeAddress {
     private int pinCode;
     private String state;
 
-    @OneToOne(mappedBy = "EmployeeAddress")
-    @Column(name = "employee_id")
+    @OneToOne()
+    @JoinColumn(name = "employee_id")
     private Employee employee;
 
 }

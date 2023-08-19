@@ -22,8 +22,8 @@ public class CustomerAddress {
     private int pinCode;
     private String state;
 
-    @OneToOne(mappedBy = "customerAddress")
-    @Column(name = "customer_id")
+    @OneToOne()
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
 }

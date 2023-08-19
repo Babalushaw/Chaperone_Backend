@@ -21,8 +21,9 @@ public class Mali {
     private String maliName;
     private String contactNumber;
     private String whatsappNumber;
+    private String password;
     private String emailId;
-    @OneToOne()
+    @OneToOne(mappedBy = "mali",cascade = CascadeType.ALL,orphanRemoval = true)
     private MaliAddress address;
 
 }

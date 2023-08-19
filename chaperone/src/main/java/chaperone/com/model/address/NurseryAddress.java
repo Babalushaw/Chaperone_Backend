@@ -22,8 +22,8 @@ public class NurseryAddress {
     private int pinCode;
     private String state;
 
-    @OneToOne(mappedBy = "NurseryAddress")
-    @Column(name = "nursery_id")
+    @OneToOne()
+    @JoinColumn(name = "nursery_id")
     private Nursery nursery;
 
 }

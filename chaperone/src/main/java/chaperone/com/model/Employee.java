@@ -21,6 +21,7 @@ public class Employee {
     private String email;
     private String phone;
     private String role;
-    @OneToOne
+    @OneToOne(mappedBy = "employee",cascade = CascadeType.ALL,orphanRemoval = true)
     private EmployeeAddress address;
+    private String password;
 }

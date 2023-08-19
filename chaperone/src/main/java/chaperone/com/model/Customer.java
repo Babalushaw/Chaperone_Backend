@@ -27,10 +27,11 @@ public class Customer {
     private String password;
     private String email;
 
-    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
-    private CustomerAddress address;
 
-    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
+    private CustomerAddress customerAddress;
+
+    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
     private Cart cart;
 
     @JsonIgnore
