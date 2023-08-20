@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public interface CustomerService {
-    Customer addCustomer(CustomerDto customerDto);
+    String addCustomer(CustomerDto customerDto);
     Customer getCustomer(String phone);
     List<Customer> customerList();
     String deleteCustomer(long customerId);
@@ -22,5 +22,4 @@ public interface CustomerService {
     Plant deleteCartItem(long customerId, long plantId);
 
     List<Payment> getPaymentDetails(long customerId);
-    Customer findByEmail(String email);
 }

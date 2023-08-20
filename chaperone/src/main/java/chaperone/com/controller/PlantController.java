@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class PlantController {
     @Autowired
     private PlantService plantService;
     @PostMapping("/add_plant")
-    public ResponseEntity<Plant> addPlant(@RequestBody PlantDto plantDto){
+    public ResponseEntity<String> addPlant(@RequestBody PlantDto plantDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(plantService.addPlant(plantDto));
     }
     @DeleteMapping("/delete_plant/{plantId}")

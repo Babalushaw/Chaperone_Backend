@@ -14,7 +14,7 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
     @PostMapping("/add_customer")
-    public ResponseEntity<Customer> addCustomer(@RequestBody CustomerDto customerDto){
+    public ResponseEntity<String> addCustomer(@RequestBody CustomerDto customerDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(customerService.addCustomer(customerDto));
     }
     @PutMapping("/update_customer/{customerId}")

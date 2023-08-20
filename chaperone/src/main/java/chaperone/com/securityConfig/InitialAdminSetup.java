@@ -24,7 +24,7 @@ public class InitialAdminSetup implements CommandLineRunner {
         if (employeeRepository.count() == 0) {
             Employee employee=new Employee();
             employee.setEmail(email);
-            employee.setRole("Admin");
+            employee.setRole("ROLE_ADMIN");
             String hashedPassword = passwordEncoder.encode(password);
             employee.setPassword(hashedPassword);
             employeeRepository.save(employee);

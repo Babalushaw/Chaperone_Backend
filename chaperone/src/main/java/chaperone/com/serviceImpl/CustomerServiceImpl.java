@@ -1,14 +1,18 @@
 package chaperone.com.serviceImpl;
 
+import chaperone.com.addresRepository.CustomerAddressRepository;
 import chaperone.com.dto.AddressDto;
+import chaperone.com.exception.CustomerException;
 import chaperone.com.model.Customer;
 import chaperone.com.dto.CustomerDto;
 import chaperone.com.model.Payment;
 import chaperone.com.model.Plant;
+import chaperone.com.model.address.CustomerAddress;
 import chaperone.com.repository.CustomerRepository;
 import chaperone.com.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,17 +23,35 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private CustomerAddressRepository customerAddressRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Override
-    public Customer addCustomer(CustomerDto customerDto) {
+    public String addCustomer(CustomerDto customerDto) {
         try{
-            Customer customer=getCustomerModel(customerDto);
-            log.info(customerDto.getName()+ " added");
+            if(customerRepository.findByMobile(customerDto.getMobileNumber())!=null){
+                return "mobile number already register";
+            }
+            Customer customer=new Customer();
+            customer.setName(customerDto.getName());
+            customer.setEmail(customerDto.getEmail());
+            customer.setMobileNumber(customerDto.getMobileNumber());
+            customer.setPassword(bCryptPasswordEncoder.encode(customerDto.getPassword()));
 
-            return customerRepository.save(customer);
+            CustomerAddress customerAddress=new CustomerAddress();
+            AddressDto addressDto=customerDto.getAddressDto();
+
+            customerAddress.setCity(addressDto.getCity());
+            customerAddress.setState(addressDto.getState());
+            customerAddress.setPinCode(addressDto.getPinCode());
+            customerAddress.setLocality(addressDto.getLocality());
+            customer.setCustomerAddress(customerAddress);
+            customerRepository.save(customer);
+            return "customer added successfully";
         }catch(Exception e){
             return null;
         }
-
     }
 
     @Override
@@ -67,30 +89,4 @@ public class CustomerServiceImpl implements CustomerService {
         return null;
     }
 
-    @Override
-    public Customer findByEmail(String email) {
-        try{
-            return customerRepository.findAll().stream().filter(customer -> customer.getEmail().compareTo(email)==0).findAny().orElse(null);
-        }catch (Exception e){
-            return null;
-        }
-
-    }
-
-    private Customer getCustomerModel(CustomerDto customerDto) {
-        try{
-            Customer customer=new Customer();
-
-            AddressDto addressDto=customerDto.getAddressDto();
-
-            customer.setName(customerDto.getName());
-            customer.setEmail(customerDto.getEmail());
-            customer.setMobileNumber(customerDto.getMobileNumber());
-
-
-            return customer;
-        }catch(Exception e){
-            return null;
-        }
-    }
 }

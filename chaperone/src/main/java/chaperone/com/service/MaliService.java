@@ -14,5 +14,4 @@ public interface MaliService {
     Mali getMali(long maliId);
 
     List<Mali> getMaliList();
-    Mali findByEmail(String email);
 }

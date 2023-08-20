@@ -33,13 +33,4 @@ public class MaliServiceImpl implements MaliService {
         return null;
     }
 
-    @Override
-    public Mali findByEmail(String email) {
-        try{
-            return maliRepository.findAll().stream().filter(mali ->   mali.getEmailId().compareTo(email)==0).findAny().orElse(null);
-        }catch(Exception e){
-            return null;
-        }
-
-    }
 }

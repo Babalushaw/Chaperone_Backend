@@ -23,4 +23,8 @@ public class PlantDto {
     private List<Category> categoryList;
     private long nurseryId;
     private long potId;
+    private byte[] image1;
+    private byte[] image2;
+    private byte[] image3;
+    private byte[] image4;
 }

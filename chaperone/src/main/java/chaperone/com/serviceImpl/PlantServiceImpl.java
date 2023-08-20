@@ -1,6 +1,5 @@
 package chaperone.com.serviceImpl;
 
-import chaperone.com.controller.PotController;
 import chaperone.com.dto.PlantDto;
 import chaperone.com.model.Plant;
 import chaperone.com.repository.CategoryRepository;
@@ -10,6 +9,7 @@ import chaperone.com.repository.PotRepository;
 import chaperone.com.service.PlantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -24,12 +24,13 @@ public class PlantServiceImpl implements PlantService {
     @Autowired
     private CategoryRepository categoryRepository;
     @Override
-    public Plant addPlant(PlantDto plantDto) {
+    public String addPlant(PlantDto plantDto) {
         try{
             Plant plant=plantDtoPlant(plantDto);
             plant.setCategoryList(plantDto.getCategoryList());
 
-            return plantRepository.save(plant);
+            plantRepository.save(plant);
+            return null;
         }catch (Exception e){
             return null;
         }

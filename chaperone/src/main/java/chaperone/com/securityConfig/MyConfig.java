@@ -16,7 +16,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
-
 public class MyConfig extends WebSecurityConfigurerAdapter {
     @Value("${my.urls.loginUrl}")
     private String loginUrl;
@@ -50,19 +49,19 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .authorizeRequests()
                 .antMatchers("chaperone/admin")
-                .hasRole("ADMIN")
+                .hasRole("admin")
                 .antMatchers("/user/**")
-                .hasRole("USER")
+                .hasRole("user")
                 .antMatchers("/**")
                 .permitAll()
                 .and()
                 .formLogin()
-                .loginPage(loginUrl)
-                .and()
-                .logout()
-                .logoutUrl(logoutUrl)
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
+//                .loginPage(loginUrl)
+//                .and()
+//                .logout()
+//                .logoutUrl(logoutUrl)
+//                .invalidateHttpSession(true)
+//                .deleteCookies("JSESSIONID")
                 .and()
                 .csrf()
                 .disable();

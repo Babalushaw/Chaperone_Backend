@@ -19,11 +19,14 @@ public class Mali {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long maliId;
     private String maliName;
-    private String contactNumber;
+    private String mobileNumber;
     private String whatsappNumber;
     private String password;
-    private String emailId;
+    private String email;
     @OneToOne(mappedBy = "mali",cascade = CascadeType.ALL,orphanRemoval = true)
     private MaliAddress address;
+
+    @Lob
+    private byte[] image;
 
 }

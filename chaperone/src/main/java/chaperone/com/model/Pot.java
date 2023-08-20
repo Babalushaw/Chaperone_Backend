@@ -26,4 +26,7 @@ public class Pot {
     @ManyToOne
     @JoinColumn(name = "plant_id")
     private Plant plant;
+
+    @Lob
+    private byte[] potImage;
 }
