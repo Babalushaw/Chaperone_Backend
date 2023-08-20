@@ -34,6 +34,11 @@ public class EmployeeImplService implements EmployeeService {
 
     @Override
     public Employee findByEmail(String email) {
-        return employeeRepository.findAll().stream().filter(employee -> employee.getEmail().compareTo(email)==0).findAny().orElse(null);
+        try{
+            return employeeRepository.findAll().stream().filter(employee -> employee.getEmail().compareTo(email)==0).findAny().orElse(null);
+        }catch (Exception e){
+            return null;
+        }
+
     }
 }

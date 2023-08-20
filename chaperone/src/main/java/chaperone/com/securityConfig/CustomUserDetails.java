@@ -1,20 +1,39 @@
 package chaperone.com.securityConfig;
 
 
+
+import chaperone.com.dto.User;
 import lombok.AllArgsConstructor;
+
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
+
+
+
+@Slf4j
+@Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
 public class CustomUserDetails implements UserDetails {
 
     private User user;
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return user.getAuthorities();
+        log.info(user.getRole());
+        SimpleGrantedAuthority simpleGrantedAuthority=new SimpleGrantedAuthority(user.getRole());
+        return List.of(simpleGrantedAuthority);
     }
 
     @Override
@@ -24,7 +43,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return user.getEmail();
     }
 
     @Override

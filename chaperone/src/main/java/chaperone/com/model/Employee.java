@@ -19,9 +19,10 @@ public class Employee {
     private long employeeId;
     private String name;
     private String email;
+    private String password;
     private String phone;
     private String role;
     @OneToOne(mappedBy = "employee",cascade = CascadeType.ALL,orphanRemoval = true)
     private EmployeeAddress address;
-    private String password;
+
 }
