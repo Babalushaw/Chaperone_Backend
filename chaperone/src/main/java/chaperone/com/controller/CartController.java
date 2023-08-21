@@ -1,5 +1,6 @@
 package chaperone.com.controller;
 
+import chaperone.com.dto.CartDto;
 import chaperone.com.model.Plant;
 import chaperone.com.service.CartService;
 import chaperone.com.service.CustomerService;
@@ -17,8 +18,8 @@ public class CartController {
     private CustomerService customerService;
 
     @PostMapping("/add_cart/{customerId}/{plantId}")
-    public ResponseEntity<String> addToCard(@PathVariable long customerId, @PathVariable long plantId){
-        return ResponseEntity.status(HttpStatus.CREATED).body(cartService.addToCard(customerId,plantId));
+    public ResponseEntity<String> addToCard(@RequestBody CartDto cartDto){
+        return ResponseEntity.status(HttpStatus.CREATED).body(cartService.addToCard(cartDto));
     }
     @GetMapping("/get_cart/{customerId}")
     public ResponseEntity<Plant> getCartDetails(@PathVariable long customerId){

@@ -1,8 +1,11 @@
 package chaperone.com.dto;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
 public class AddressDto {
     private String locality;
     private String city;

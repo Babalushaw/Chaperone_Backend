@@ -12,4 +12,5 @@ import lombok.Setter;
 public class Size {
     private String name;
     private String quantity;
+    private float sellingPrice;
 }

@@ -1,5 +1,7 @@
 package chaperone.com.controller;
 
+import chaperone.com.dto.EmployeeDto;
+import chaperone.com.exception.ServerNotFound;
 import chaperone.com.model.Employee;
 import chaperone.com.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +17,19 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
     @PostMapping("/add_employee")
-    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee){
-        return ResponseEntity.status(HttpStatus.CREATED).body(employeeService.addEmployee(employee));
+    public ResponseEntity<String> addEmployee(@RequestBody EmployeeDto employeeDto) throws ServerNotFound {
+        return ResponseEntity.status(HttpStatus.CREATED).body(employeeService.addEmployee(employeeDto));
     }
     @DeleteMapping("/delete_employee/{empId}")
-    public ResponseEntity<String> deleteEmployee(@PathVariable long empId){
+    public ResponseEntity<String> deleteEmployee(@PathVariable long empId) throws ServerNotFound {
         return ResponseEntity.status(HttpStatus.OK).body(employeeService.deleteEmployee(empId));
     }
     @GetMapping("/{empId}")
-    public ResponseEntity<Employee> getEmployee(@PathVariable long empId){
+    public ResponseEntity<Employee> getEmployee(@PathVariable long empId) throws ServerNotFound {
         return ResponseEntity.status(HttpStatus.OK).body(employeeService.getEmployee(empId));
     }
     @GetMapping("/employee_list")
-    public ResponseEntity<List<Employee>> employeeList(){
+    public ResponseEntity<List<Employee>> employeeList() throws ServerNotFound {
         return ResponseEntity.status(HttpStatus.OK).body(employeeService.employeeList());
     }
 }

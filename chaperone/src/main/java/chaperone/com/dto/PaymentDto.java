@@ -10,7 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaymentDto {
-    private String DateTime;
     private String paymentMode;
     private float amount;
     private long bookingId;

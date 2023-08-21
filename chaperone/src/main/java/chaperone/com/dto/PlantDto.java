@@ -1,6 +1,9 @@
 package chaperone.com.dto;
 
 import chaperone.com.model.Category;
+import chaperone.com.model.Nursery;
+import chaperone.com.model.Pot;
+import chaperone.com.model.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,12 +22,10 @@ public class PlantDto {
     private int percentageIncrease;
     private String description;
     private String colour;
-    private String size;
     private List<Category> categoryList;
+    private List<SizeDto> sizeDtoList;
+    private List<Pot> potList;
+    private List<Nursery> nurseryList;
     private long nurseryId;
-    private long potId;
-    private byte[] image1;
-    private byte[] image2;
-    private byte[] image3;
-    private byte[] image4;
+    List<byte[]> imageList;
 }

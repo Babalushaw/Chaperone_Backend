@@ -17,4 +17,6 @@ public interface PlantService {
     List<Plant> getPlant(String plantName);
 
     List<Plant> palntList();
+
+    List<Plant> getPlantByCategory(String category);
 }

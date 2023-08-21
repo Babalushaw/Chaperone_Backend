@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
@@ -48,14 +49,16 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
 
         httpSecurity
                 .authorizeRequests()
-                .antMatchers("chaperone/admin")
+                .antMatchers("/chaperone/admin/**")
                 .hasRole("admin")
                 .antMatchers("/user/**")
                 .hasRole("user")
                 .antMatchers("/**")
                 .permitAll()
+
                 .and()
                 .formLogin()
+
 //                .loginPage(loginUrl)
 //                .and()
 //                .logout()
@@ -64,7 +67,10 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
 //                .deleteCookies("JSESSIONID")
                 .and()
                 .csrf()
-                .disable();
+                .disable()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
+
 
     }
     @Bean
