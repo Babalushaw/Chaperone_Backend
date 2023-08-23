@@ -38,7 +38,7 @@ public class  UserDetailsServiceImp implements UserDetailsService {
         User user=new User();
         CustomUserDetails customUserDetails=new CustomUserDetails();
         try{
-            user.setRole("CUSTOMER");
+            user.setRole("ROLE_CUSTOMER");
             user.setEmail(email);
             user.setPassword(customer.getPassword());
             customUserDetails.setUser(user);
@@ -57,7 +57,7 @@ public class  UserDetailsServiceImp implements UserDetailsService {
             log.info("not a employee");
         }
         try{
-            user.setRole("MALI");
+            user.setRole("ROLE_MALI");
             user.setEmail(email);
             log.info(email);
             user.setPassword(mali.getPassword());

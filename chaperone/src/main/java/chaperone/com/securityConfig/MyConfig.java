@@ -50,16 +50,16 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .authorizeRequests()
                 .antMatchers("/chaperone/admin/**")
-                .hasRole("admin")
+                .hasRole("ADMIN")
                 .antMatchers("/user/**")
-                .hasRole("user")
+                .hasRole("CUSTOMER")
                 .antMatchers("/**")
                 .permitAll()
 
                 .and()
                 .formLogin()
 
-//                .loginPage(loginUrl)
+//                .loginPage("/login")
 //                .and()
 //                .logout()
 //                .logoutUrl(logoutUrl)
