@@ -55,16 +55,14 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
                 .hasRole("CUSTOMER")
                 .antMatchers("/**")
                 .permitAll()
-
                 .and()
                 .formLogin()
-
-//                .loginPage("/login")
-//                .and()
-//                .logout()
-//                .logoutUrl(logoutUrl)
-//                .invalidateHttpSession(true)
-//                .deleteCookies("JSESSIONID")
+                .loginPage("/login")
+                .and()
+                .logout()
+                .logoutUrl(logoutUrl)
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .and()
                 .csrf()
                 .disable()
@@ -76,7 +74,7 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("https://your-frontend-domain:your-frontend-port");
+        configuration.addAllowedOrigin("http://localhost:3000");
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
 
