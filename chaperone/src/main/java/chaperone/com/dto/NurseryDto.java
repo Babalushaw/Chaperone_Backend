@@ -14,4 +14,5 @@ public class NurseryDto {
     private String mobileNumber;
     private String email;
     private AddressDto addressDto;
+    private String nurseryName;
 }

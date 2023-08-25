@@ -9,7 +9,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
-public class CategoryDto {
-    private String categoryType;
-    private String description;
+public class SizeDto {
+    private String name;
+    private String quantity;
+    private float percent;
+    private float nurseryPrice;
 }

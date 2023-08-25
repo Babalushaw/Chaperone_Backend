@@ -25,16 +25,8 @@ public class Plant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="plant_id")
     private long plantId;
-
     private String name;
     private double rating;
-
-    @Column(name = "nursery_price")
-    private float nurseryPrice;
-
-    @Column(name = "selling_price")
-    private float sellingPrice;
-
     private String description;
 
 

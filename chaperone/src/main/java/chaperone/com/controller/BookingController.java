@@ -1,6 +1,8 @@
 package chaperone.com.controller;
 
+import chaperone.com.dto.BookingDto;
 import chaperone.com.model.Booking;
+import chaperone.com.response.BookingResponse;
 import chaperone.com.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,12 +17,12 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
     @PostMapping("/booking/{customerId}/{productId}/{quantity}")
-    public ResponseEntity<Booking> booking(@PathVariable long customerId,@PathVariable long productId,@PathVariable int quantity){
-        return ResponseEntity.status(HttpStatus.CREATED).body(bookingService.booking(customerId,productId,quantity));
+    public ResponseEntity<BookingResponse> booking(@RequestBody BookingDto bookingDto){
+        return ResponseEntity.status(HttpStatus.CREATED).body(bookingService.booking(bookingDto));
     }
     @GetMapping("/{phone}")
-    public ResponseEntity<Booking> getBooking(@PathVariable String phone){
-        return ResponseEntity.status(HttpStatus.OK).body(bookingService.getBooking(phone));
+    public ResponseEntity<Booking> getBooking(@PathVariable long bookingId){
+        return ResponseEntity.status(HttpStatus.OK).body(bookingService.getBooking(bookingId));
     }
     @GetMapping("/booking_list")
     public ResponseEntity<List<Booking>> bookingList(){

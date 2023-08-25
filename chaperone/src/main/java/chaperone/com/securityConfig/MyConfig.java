@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
@@ -48,29 +49,31 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
 
         httpSecurity
                 .authorizeRequests()
-                .antMatchers("chaperone/admin")
-                .hasRole("admin")
+                .antMatchers("/chaperone/admin/**")
+                .hasRole("ADMIN")
                 .antMatchers("/user/**")
-                .hasRole("user")
+                .hasRole("CUSTOMER")
                 .antMatchers("/**")
                 .permitAll()
                 .and()
                 .formLogin()
-//                .loginPage(loginUrl)
-//                .and()
-//                .logout()
-//                .logoutUrl(logoutUrl)
-//                .invalidateHttpSession(true)
-//                .deleteCookies("JSESSIONID")
+                .loginPage("/login")
+                .and()
+                .logout()
+                .logoutUrl(logoutUrl)
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .and()
                 .csrf()
-                .disable();
+                .disable()
+                .sessionManagement();
+
 
     }
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("https://your-frontend-domain:your-frontend-port");
+        configuration.addAllowedOrigin("http://localhost:3000");
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
 

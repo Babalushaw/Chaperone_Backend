@@ -17,6 +17,7 @@ public class Nursery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long nurserId;
+    private String nurseryName;
     private String contactPerson;
     private String mobileNumber;
     private String email;

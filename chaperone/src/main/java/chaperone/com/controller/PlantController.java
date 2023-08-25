@@ -28,6 +28,10 @@ public class PlantController {
     public ResponseEntity<List<Plant>> getPlant(@PathVariable String plantName){
         return ResponseEntity.status(HttpStatus.OK).body(plantService.getPlant(plantName));
     }
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<Plant>> getPlantByCategory(@PathVariable String category){
+        return ResponseEntity.status(HttpStatus.OK).body(plantService.getPlantByCategory(category));
+    }
     @GetMapping("/plant_list")
     public ResponseEntity<List<Plant>> plantList(){
         return ResponseEntity.status(HttpStatus.OK).body(plantService.palntList());

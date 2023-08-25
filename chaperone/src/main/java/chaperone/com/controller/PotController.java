@@ -1,5 +1,7 @@
 package chaperone.com.controller;
 
+import chaperone.com.dto.PotDto;
+import chaperone.com.exception.ServerNotFound;
 import chaperone.com.model.Pot;
 import chaperone.com.service.PotService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +19,11 @@ public class PotController {
     private PotService potService;
 
     @PostMapping("/add_pot")
-    public ResponseEntity<Pot> addPot(@RequestBody Pot pot){
-        return ResponseEntity.status(HttpStatus.CREATED).body(potService.addPot(pot));
+    public ResponseEntity<String> addPot(@RequestBody PotDto potDto) throws ServerNotFound {
+        return ResponseEntity.status(HttpStatus.CREATED).body(potService.addPot(potDto));
     }
     @DeleteMapping("/delete_pot/{potId}")
-    public ResponseEntity<String> deletePot(@PathVariable long potId){
+    public ResponseEntity<String> deletePot(@PathVariable long potId) throws ServerNotFound {
         return ResponseEntity.status(HttpStatus.CREATED).body(potService.deletePot(potId));
     }
     @GetMapping("/{pot_name}")
@@ -30,7 +32,7 @@ public class PotController {
         return  ResponseEntity.status(HttpStatus.OK).body(new ArrayList<Pot>());
     }
     @GetMapping("/pot_list")
-    public ResponseEntity<List<Pot>> getPotList(){
+    public ResponseEntity<List<Pot>> getPotList() throws ServerNotFound {
         return ResponseEntity.status(HttpStatus.OK).body(potService.getPotList());
     }
 

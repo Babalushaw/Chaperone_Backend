@@ -22,6 +22,7 @@ public class Employee {
     private String password;
     private String mobileNumber;
     private String role;
+    private String designation;
     @OneToOne(mappedBy = "employee",cascade = CascadeType.ALL,orphanRemoval = true)
     private EmployeeAddress address;
     @Lob
