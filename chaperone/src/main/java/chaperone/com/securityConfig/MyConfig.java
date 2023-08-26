@@ -3,6 +3,7 @@ package chaperone.com.securityConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -47,6 +48,12 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
         authenticationManagerBuilder.authenticationProvider(authenticationProvider());
     }
     @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception{
 
         httpSecurity
@@ -55,7 +62,7 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/chaperone/admin/**")
                 .hasRole("ADMIN")
-                .antMatchers("/user/**")
+                .antMatchers("chaperone/user/**")
                 .hasRole("CUSTOMER")
                 .antMatchers("/**")
                 .permitAll()

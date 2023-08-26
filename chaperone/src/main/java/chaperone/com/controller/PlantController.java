@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("/chaperone/plant")
+@RequestMapping("/chaperone/admin/plant")
 @Slf4j
 public class PlantController {
     @Autowired

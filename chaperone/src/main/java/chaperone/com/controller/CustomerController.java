@@ -7,6 +7,7 @@ import chaperone.com.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,10 +19,12 @@ public class CustomerController {
     public ResponseEntity<String> addCustomer(@RequestBody CustomerDto customerDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(customerService.addCustomer(customerDto));
     }
+    @PreAuthorize("USER")
     @PutMapping("/update_customer/{customerId}")
     public ResponseEntity<Customer> updateCustomer(@PathVariable long customerId,@RequestBody CustomerDto customerDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(customerService.updateCustomer(customerId,customerDto));
     }
+    @PreAuthorize("USER")
     @GetMapping("/{customerId}")
     public ResponseEntity<Customer> getCustomer(@PathVariable long customerId) throws ServerNotFound {
         return ResponseEntity.status(HttpStatus.OK).body(customerService.getCustomer(customerId));
