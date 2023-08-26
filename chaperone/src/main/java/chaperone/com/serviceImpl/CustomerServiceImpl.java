@@ -88,7 +88,7 @@ public class CustomerServiceImpl implements CustomerService {
             }
             else{
                 customerRepository.deleteById(customerId);
-                return "deleted Sucessfully";
+                return "deleted Successfully";
             }
         } catch (EntityNotFound e) {
             throw new ServerNotFound("server unavailable");

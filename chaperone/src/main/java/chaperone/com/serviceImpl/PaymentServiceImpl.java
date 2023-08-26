@@ -9,7 +9,6 @@ import com.razorpay.RazorpayException;
 import lombok.extern.slf4j.Slf4j;
 import lombok.var;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

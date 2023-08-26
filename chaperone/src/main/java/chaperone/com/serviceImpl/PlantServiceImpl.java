@@ -1,7 +1,6 @@
 package chaperone.com.serviceImpl;
 
 import chaperone.com.dto.PlantDto;
-import chaperone.com.model.Category;
 import chaperone.com.model.Plant;
 import chaperone.com.model.ProductImage;
 import chaperone.com.model.Size;
@@ -33,13 +32,13 @@ public class PlantServiceImpl implements PlantService {
         try{
             Plant plant=new Plant();
             List<ProductImage> productImageList=new ArrayList<>();
-            plantDto.getImageList().stream().forEach(image->{
+            plantDto.getImageList().forEach(image->{
                 ProductImage productImage=new ProductImage();
                 productImage.setImage(image);
                 productImageList.add(productImage);
             });
             Set<Size> sizes= new HashSet<>();
-            plantDto.getSizeDtoList().stream().forEach(sizeDto -> {
+            plantDto.getSizeDtoList().forEach(sizeDto -> {
                 Size size=new Size();
                 size.setSellingPrice(sizeDto.getNurseryPrice()+ (sizeDto.getNurseryPrice() * sizeDto.getPercent())/100f);
                 size.setName(sizeDto.getName());
@@ -73,12 +72,28 @@ public class PlantServiceImpl implements PlantService {
 
     @Override
     public List<Plant> palntList() {
-        return null;
+        try{
+            return plantRepository.findAll();
+        }catch (Exception e){
+            throw new RuntimeException("Server not available");
+        }
+
     }
 
     @Override
     public List<Plant> getPlantByCategory(String category) {
-        return null;
+        try {
+            List<Plant> plantList=new ArrayList<>();
+            categoryRepository.findAll().forEach(category1 -> {
+                if(category1.getCategoryType().compareTo(category)==0){
+                    plantList.add(category1.getPlant());
+                }
+            });
+            return plantList;
+        }catch (Exception e){
+            throw new RuntimeException("Server not available");
+        }
+
     }
 
 }

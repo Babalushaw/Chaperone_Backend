@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
@@ -48,6 +50,8 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception{
 
         httpSecurity
+                .cors()
+                .and()
                 .authorizeRequests()
                 .antMatchers("/chaperone/admin/**")
                 .hasRole("ADMIN")
@@ -57,12 +61,6 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .and()
-                .logout()
-                .logoutUrl(logoutUrl)
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
                 .and()
                 .csrf()
                 .disable()
@@ -81,4 +79,6 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
+
 }

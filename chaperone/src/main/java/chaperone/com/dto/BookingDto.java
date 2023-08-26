@@ -13,4 +13,5 @@ public class BookingDto {
     private int numberOfQuantity;
     private long plantId;
     private long customerId;
+    private float amount;
 }
